@@ -35,6 +35,28 @@ function render() {
   }
   bdsContainer += '</section>';
 
+  // lire suite du résumer avec boutton lire la suite:
+  // faire remove puis add du texte complet
+
+  /* document.body.addEventListener('click', (e) => {
+    if (e.target.matches('.btn-resumer')) {
+      bdsContainer.remove('<p class="card-text"> ${bds[i].resume.substr(30)}</p>');
+      bdsContainer.add(' <p class="card-text"> ${bds[i].resume.substr(30)} </p>');
+      render();
+    }
+  });
+}
+*/
+
+  /* // autre test:
+
+document.body.addEventListener('click', (e) => {
+  if (e.target.matches('.btn-resumer')) {
+    bdsContainer -= `<p class="card-text"> ${bds[i].resume.substr(0, 30)}</p>`;
+    bdsContainer += ` <p class="card-text"> ${bds[i].resume}</p> `;
+    render();
+  } */
+
   // partie panier:
   let panier = '<div class="panier" >';
   panier += '<h3> Dans votre panier : </h3>';
@@ -46,6 +68,7 @@ function render() {
     }
   }
   panier += '</div>';
+
   app.innerHTML += bdsContainer + panier;
 }
 
@@ -59,28 +82,6 @@ document.body.addEventListener('click', (e) => {
     render();
   }
 });
-
-// lire suite du résumer avec boutton lire la suite:
-// faire remove puis add du texte complet
-
-/* document.body.addEventListener('click', (e) => {
-    if (e.target.matches('.btn-resumer')) {
-      bdsContainer.remove('<p class="card-text"> ${bds[i].resume.substr(30)}</p>');
-      bdsContainer.add(' <p class="card-text"> ${bds[i].resume.substr(30)} </p>');
-      render();
-    }
-  });
-}
-*/
-
-/* // autre test:
-
-document.body.addEventListener('click', (e) => {
-  if (e.target.matches('.btn-resumer')) {
-    bdsContainer -= `<p class="card-text"> ${bds[i].resume.substr(0, 30)}</p>`;
-    bdsContainer += ` <p class="card-text"> ${bds[i].resume}</p> `;
-    render();
-  } */
 
 /* //autre piste notion de enfant / parent (compliquer...):
 
