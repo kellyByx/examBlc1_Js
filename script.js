@@ -82,7 +82,7 @@ document.body.addEventListener('click', (e) => {
 
 render();
 
-/* //autre piste notion de enfant / parent:
+/* //autre piste notion de enfant / parent (compliquer...):
 
  const resumer = document.querySelectorAll('.btn-resumer');
   for (let i = 0; i < bds.length; i++) {
