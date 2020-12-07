@@ -35,6 +35,28 @@ function render() {
   }
   bdsContainer += '</section>';
 
+  // partie panier:
+  let panier = '<div class="panier" >';
+  panier += '<h3> Dans votre panier : </h3>';
+  for (let i = 0; i < bds.length; i++) {
+    if (bds[i].emprunt) {
+      panier += `<
+        <p> <h5>livre : ${bds[i].titre}</h5> </p>
+        `;
+    }
+  }
+  panier += '</div>';
+  app.innerHTML += bdsContainer + panier;
+
+  // évenement remprunter:
+  document.body.addEventListener('click', (e) => {
+    if (e.target.matches('.btn-emprunter')) {
+      const listEmprunt = bds[e.target.id];
+      bds.emprunter = !bds.emprunter;
+      render();
+    }
+  });
+
   // lire suite du résumer avec boutton lire la suite:
   // faire remove puis add du texte complet
 
@@ -48,42 +70,19 @@ function render() {
 }
 */
 
-// autre test:
+/* // autre test:
 
 document.body.addEventListener('click', (e) => {
   if (e.target.matches('.btn-resumer')) {
     bdsContainer -= `<p class="card-text"> ${bds[i].resume.substr(0, 30)}</p>`;
     bdsContainer += ` <p class="card-text"> ${bds[i].resume}</p> `;
     render();
-  } 
-
-  // partie panier:
-  let panier = '<div class="panier" >';
-  panier += '<h3> Dans votre panier : </h3>';
-  for (let i = 0; i < bds.length; i++) {
-    if (bds[i].emprunt) {
-      panier += `<
-        <p> <h5>livre : ${bds[i].titre}</h5> </p>
-        `;
-    }
-  }
-  panier += '</div>';
-
-  app.innerHTML += bdsContainer + panier;
+  } */
 }
 
 render();
 
-// évenement remprunter:
-document.body.addEventListener('click', (e) => {
-  if (e.target.matches('.btn-emprunter')) {
-    const listEmprunt = bds[e.target.id];
-    bds.emprunter = !bds.emprunter;
-    render();
-  }
-});
-
-/* //autre piste notion de enfant / parent (compliquer...):
+/* //autre piste notion de enfant / parent:
 
  const resumer = document.querySelectorAll('.btn-resumer');
   for (let i = 0; i < bds.length; i++) {
