@@ -48,14 +48,14 @@ function render() {
 }
 */
 
-  /* // autre test:
+// autre test:
 
 document.body.addEventListener('click', (e) => {
   if (e.target.matches('.btn-resumer')) {
     bdsContainer -= `<p class="card-text"> ${bds[i].resume.substr(0, 30)}</p>`;
     bdsContainer += ` <p class="card-text"> ${bds[i].resume}</p> `;
     render();
-  } */
+  } 
 
   // partie panier:
   let panier = '<div class="panier" >';
