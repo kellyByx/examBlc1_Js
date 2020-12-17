@@ -7,11 +7,15 @@
 @import "./styles/fonts";
 @import "./styles/base";
 
+section{
+    display: flex;
+    flex-wrap: wrap;
 
+}
 .card{
    text-align: left;
    padding: 2%;
-   margin: auto;
+ 
    margin-bottom: 1%;
    width: 100px;
 }
