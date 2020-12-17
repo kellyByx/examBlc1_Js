@@ -40,7 +40,7 @@ function render() {
   panier += '<h3> Dans votre panier : </h3>';
   for (let i = 0; i < bds.length; i++) {
     if (bds[i].emprunt) {
-      panier += `<
+      panier += `
         <p> <h5>livre : ${bds[i].titre}</h5> </p>
         `;
     }
