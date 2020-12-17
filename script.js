@@ -39,57 +39,43 @@ function render() {
   let panier = '<div class="panier" >';
   panier += '<h3> Dans votre panier : </h3>';
   for (let i = 0; i < bds.length; i++) {
-    if (bds[i].emprunt) {
+    if (bds[i].emprunter) { // !!! bien mettre emprunter => pareil dans tt le code
       panier += `
         <p> <h5>livre : ${bds[i].titre}</h5> </p>
         `;
     }
   }
   panier += '</div>';
-  app.innerHTML += bdsContainer + panier;
-
-  // évenement remprunter:
-  document.body.addEventListener('click', (e) => {
-    if (e.target.matches('.btn-emprunter')) {
-      const listEmprunt = bds[e.target.id];
-      bds.emprunter = !bds.emprunter;
-      render();
-    }
-  });
-
-  // lire suite du résumer avec boutton lire la suite:
-  // faire remove puis add du texte complet
-
-  /* document.body.addEventListener('click', (e) => {
-    if (e.target.matches('.btn-resumer')) {
-      bdsContainer.remove('<p class="card-text"> ${bds[i].resume.substr(30)}</p>');
-      bdsContainer.add(' <p class="card-text"> ${bds[i].resume.substr(30)} </p>');
-      render();
-    }
-  });
-}
-*/
-
-/* // autre test:
-
-document.body.addEventListener('click', (e) => {
-  if (e.target.matches('.btn-resumer')) {
-    bdsContainer -= `<p class="card-text"> ${bds[i].resume.substr(0, 30)}</p>`;
-    bdsContainer += ` <p class="card-text"> ${bds[i].resume}</p> `;
-    render();
-  } */
+  app.innerHTML = bdsContainer + panier;// veut donner
+  // !!!ne pas faire += car on ne veut pas un cumul
+  // =>sinon cela superpose le panier (fixe) à chaque "clic"
 }
 
 render();
 
-/* //autre piste notion de enfant / parent (compliquer...):
+// ----------- évenement remprunter:--------------------
+//! !! mettre hors render => délégation
+// le principe meme de la délégation est de ne pas etre liée à un "render",
+// elle est juste là a attendre son heure, liée à rien
 
- const resumer = document.querySelectorAll('.btn-resumer');
-  for (let i = 0; i < bds.length; i++) {
-  resumer[i].addEventListener('click', () => {
-   suite.parentNode.removeChild();
-   document.body.appendChild()
-   p.appendChild();
+document.body.addEventListener('click', (e) => {
+  if (e.target.matches('.btn-emprunter')) {
+    // créer bd individuel trouvé avec la bonne id
+    const bd = bds[e.target.id];
+    // change param de cette bd
+    bd.emprunter = !bd.emprunter;
     render();
-  });
-  } */
+  }
+});
+
+// -------lire suite du résumer avec boutton lire la suite:--------
+// utilisation du parentNode = en local => pas besoin de rendre le code
+// parentNode :ici"la div dans laquelle il y a mon bouton"
+
+document.body.addEventListener('click', (e) => {
+  if (e.target.matches('.btn-resumer')) {
+    const parent = e.target.parentNode;
+    const { id } = parent.parentNode;
+    parent.querySelector('.texteResumer').innerHTML = bds[id].resume;
+  }
+});
